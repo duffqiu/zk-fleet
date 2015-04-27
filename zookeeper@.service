@@ -1,0 +1,20 @@
+[Unit]
+Description=zookeeper
+After=skydns.service
+Requires=skydns.service
+
+[Service]
+EnvironmentFile=/etc/environment
+Environment="DOMAIN_NAME=cluster.duffqiu.org"
+ExecStart=/usr/bin/docker run --rm \
+                              --name zookeeper-%i \
+                              -e ZK_SERVER_ID=%i \
+                              --hostname zookeeper-%i.${DOMAIN_NAME} \
+                              --dns-search ${DOMAIN_NAME} \
+                              -p ${COREOS_PRIVATE_IPV4}:2181:2181 \
+                              duffqiu/zk-fleet:latest
+
+ExecStop=/usr/bin/docker stop zookeeper-%i
+
+[X-Fleet]
+X-Conflicts=zookeeper@*.service
