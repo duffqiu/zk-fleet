@@ -1,5 +1,5 @@
 [Unit]
-Description=zookeeper
+Description=zookeeper service unit
 After=skydns2.service
 Requires=skydns2.service
 
@@ -12,10 +12,12 @@ ExecStart=/usr/bin/docker run --rm \
                               -e ZK_SERVER_ID=%i \
                               --hostname zookeeper-%i.${DOMAIN_NAME} \
                               --dns-search ${DOMAIN_NAME} \
+                              --dns ${COREOS_PRIVATE_IPV4} \
                               -p ${COREOS_PRIVATE_IPV4}:2181:2181 \
+                              -p ${COREOS_PRIVATE_IPV4}:2888:2888 \
+                              -p ${COREOS_PRIVATE_IPV4}:3888:3888 \
                               -v /home/core/vdb/zk/data:/zookeeper/data \
                               duffqiu/zk-fleet:latest
-
 ExecStop=/usr/bin/docker stop zookeeper-%i
 
 [X-Fleet]
