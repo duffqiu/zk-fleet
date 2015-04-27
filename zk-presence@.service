@@ -1,0 +1,16 @@
+[Unit]
+Description=Zookeeper Presence
+BindsTo=zookeeper@%i.service
+After=zookeeper@%i.service
+
+[Service]
+Restart=always
+RestartSec=30
+
+EnvironmentFile=/etc/environment
+Environment="ZOOKEEPER_CLIENT_PORT=2181"
+ExecStartPre=/usr/bin/etcdctl set --ttl 60 /skydns/org/duffqiu/cluster/zookeeper-%i '{"host":"${COREOS_PRIVATE_IPV4}","port":${ZOOKEEPER_CLIENT_PORT}}'
+ExecStart=/usr/bin/echo "Set zookeeper-%i in skydns2"
+
+[X-Fleet]
+MachineOf=zookeeper@%i.service
