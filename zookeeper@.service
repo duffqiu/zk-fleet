@@ -11,6 +11,9 @@ Environment="DOMAIN_NAME=cluster.duffqiu.org"
 ExecStartPre=-/usr/bin/docker kill zookeeper-%i
 ExecStartPre=-/usr/bin/docker rm  zookeeper-%i
 ExecStartPre==/usr/bin/docker pull duffqiu/zk-fleet:latest
+ExecStartPre=/usr/bin/etcdctl set /skydns/org/duffqiu/cluster/zookeeper-1 '{"host":"${COREOS_PRIVATE_IPV4}","port":${ZOOKEEPER_CLIENT_PORT}}'
+ExecStartPre=/usr/bin/etcdctl set /skydns/org/duffqiu/cluster/zookeeper-2 '{"host":"${COREOS_PRIVATE_IPV4}","port":${ZOOKEEPER_CLIENT_PORT}}'
+ExecStartPre=/usr/bin/etcdctl set /skydns/org/duffqiu/cluster/zookeeper-3 '{"host":"${COREOS_PRIVATE_IPV4}","port":${ZOOKEEPER_CLIENT_PORT}}'
 ExecStart=/usr/bin/docker run --rm \
                               --name zookeeper-%i \
                               -e ZK_SERVER_ID=%i \
