@@ -1,6 +1,6 @@
 #!/bin/bash
 
 echo $ZK_SERVER_ID > /zookeeper/data/myid
-echo "Starting up zookeeper server: $ZK_SERVER_ID"
+echo "Starting up zookeeper server(3.4.7-snapshot): $ZK_SERVER_ID"
 
-/zookeeper/bin/zkServer.sh start-foreground
+/zookeeper-3.4.7/bin/zkServer.sh start-foreground
