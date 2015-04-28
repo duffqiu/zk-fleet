@@ -1,10 +1,10 @@
 FROM duffqiu/zookeeper:latest
 MAINTAINER duffqiu@gmail.com
 
-ADD zookeeper-3.4.7-SNAPSHOT.tar.gz /zookeeper-3.4.7-SNAPSHOT.tar.gz
+ADD zookeeper-3.4.7-SNAPSHOT.tar.gz /zk-tmp.tar.gz
 #RUN tar -zxf /zookeeper-3.4.7-SNAPSHOT.tar.gz
-RUN mv /zookeeper-3.4.7-SNAPSHOT.tar.gz /zookeeper-3.4.7
-RUN rm -rf /zookeeper-3.4.7-SNAPSHOT.tar.gz
+RUN mv /zk-tmp.tar.gz/zookeeper-3.4.7-SNAPSHOT /zookeeper-3.4.7
+RUN rm -rf /zk-tmp.tar.gz
 
 ADD conf/zoo.cfg /zookeeper-3.4.7/conf/zoo.cfg
 
