@@ -15,7 +15,7 @@ ExecStartPre=/usr/bin/etcdctl set --ttl 60 /skydns/org/duffqiu/cluster/zookeeper
 ExecStartPre=/usr/bin/etcdctl set --ttl 60 /skydns/org/duffqiu/cluster/_tcp/_zookeeper/%i '{"host":"${COREOS_PRIVATE_IPV4}","port":${ZOOKEEPER_CLIENT_PORT}}'
 ExecStartPre=/usr/bin/etcdctl set --ttl 60 /skydns/org/duffqiu/cluster/_tcp/_zookeeper-leader/%i '{"host":"${COREOS_PRIVATE_IPV4}","port":${ZOOKEEPER_LEADER_PORT}}'
 ExecStartPre=/usr/bin/etcdctl set --ttl 60 /skydns/org/duffqiu/cluster/_tcp/_zookeeper-election/%i '{"host":"${COREOS_PRIVATE_IPV4}","port":${ZOOKEEPER_LEADER_ELECTION_PORT}}'
-ExecStart=/bin/sh -C "echo Set zookeeper-%i in skydns2"
+ExecStart=/usr/bin/echo "Set zookeeper-%i in skydns2"
 
 [X-Fleet]
 MachineOf=zookeeper@%i.service
