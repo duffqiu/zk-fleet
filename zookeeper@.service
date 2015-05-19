@@ -10,7 +10,7 @@ EnvironmentFile=/etc/environment
 Environment="DOMAIN_NAME=cluster.duffqiu.org"
 ExecStartPre=-/usr/bin/docker kill zookeeper-%i
 ExecStartPre=-/usr/bin/docker rm  zookeeper-%i
-ExecStartPre==/usr/bin/docker pull duffqiu/zk-fleet:latest
+ExecStartPre=-/usr/bin/docker pull duffqiu/zk-fleet:latest
 ExecStart=/usr/bin/docker run  \
                               --name zookeeper-%i \
                               -e ZK_SERVER_ID=%i \
