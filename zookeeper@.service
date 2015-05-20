@@ -5,8 +5,9 @@ Requires=skydns2.service
 Wants=zk-presence@%i.service
 
 [Service]
-Restart=on-failure
-RestartSec=60
+Restart=always
+RestartSec=15
+TimeoutSec=120
 EnvironmentFile=/etc/environment
 Environment="DOMAIN_NAME=cluster.duffqiu.org"
 ExecStartPre=-/usr/bin/docker kill zookeeper-%i
