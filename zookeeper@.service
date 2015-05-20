@@ -1,12 +1,11 @@
 [Unit]
 Description=zookeeper service unit
 After=skydns2.service
-Requires=skydns2.service
 Wants=zk-presence@%i.service
 
 [Service]
 Restart=on-failure
-RestartSec=60
+RestartSec=10
 EnvironmentFile=/etc/environment
 Environment="DOMAIN_NAME=cluster.duffqiu.org"
 ExecStartPre=-/usr/bin/docker kill zookeeper-%i
