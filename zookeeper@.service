@@ -27,3 +27,4 @@ ExecStop=-/usr/bin/docker stop zookeeper-%i
 
 [X-Fleet]
 X-Conflicts=zookeeper@*.service
+MachineMetadata=role=back

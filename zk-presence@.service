@@ -19,3 +19,4 @@ ExecStart=/usr/bin/echo "Set zookeeper-%i in skydns2"
 
 [X-Fleet]
 MachineOf=zookeeper@%i.service
+MachineMetadata=role=back
