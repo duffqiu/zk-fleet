@@ -21,7 +21,7 @@ ExecStart=/usr/bin/docker run  \
                               -p ${COREOS_PRIVATE_IPV4}:2181:2181 \
                               -p ${COREOS_PRIVATE_IPV4}:2888:2888 \
                               -p ${COREOS_PRIVATE_IPV4}:3888:3888 \
-                              -v /home/core/vdb/zk/data:/zookeeper/data \
+                              -v /mirror/zk-%i/data:/zookeeper-3.6.0/data \
                               duffqiu/zk-fleet:latest
 ExecStop=-/usr/bin/docker stop zookeeper-%i
 
